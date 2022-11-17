@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+
+# stop on the first error
+set -e
+
+EASIER_UVM_DIR="../easier_uvm_gen-2017-01-19"
+
+# missing perl libs
+perl_install_path="$(dirname $(which perl))/.."
+export PERL5LIB="$(readlink -e $perl_install_path/lib/5*)"
+export PERL5LIB="$EASIER_UVM_DIR/File-Copy-Recursive-0.45/lib:$PERL5LIB"
+
+perl $EASIER_UVM_DIR/easier_uvm_gen.pl ./fifo_in.tpl ./fifo_out.tpl

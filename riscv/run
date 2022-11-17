@@ -1,0 +1,52 @@
+#!/usr/bin/env bash
+
+set -e
+
+IUS_HOME=$(ncroot)
+TOP_DIR="../riscv-simple-sv"
+
+RTL_DIR="$TOP_DIR/core"
+CFG_DIR="$TOP_DIR/config"
+TB_DIR="../tb"
+TEST_DIR="../tests"
+
+
+#--------------------------------------------------------------
+# functions
+#--------------------------------------------------------------
+error() {
+  >&2 echo "ERROR: $@"
+  exit 1
+}
+
+mkdir -p output
+cd output
+
+test_name="$1"
+[ "$test_name" == "" ] && test_name="basic_test"
+
+make -C $TEST_DIR
+
+xrun -q                                               \
+  -vtimescale 1ns/1ps                                 \
+  -uvmhome ${IUS_HOME}/tools/methodology/UVM/CDNS-1.2 \
+  -access +rw                                         \
+  +incdir+$TB_DIR/include                             \
+  +incdir+$TB_DIR/uvm_sw_ipc/sv                       \
+  +incdir+$TB_DIR/top/sv                              \
+  +incdir+$TB_DIR/top_test/sv                         \
+  +incdir+$TB_DIR/top_tb/sv                           \
+  -incdir $CFG_DIR                                    \
+  -incdir $RTL_DIR/common/                            \
+  -incdir $RTL_DIR/singlecycle/                       \
+  $RTL_DIR/common/*                                   \
+  $RTL_DIR/singlecycle/*                              \
+  +text_file=$TEST_DIR/$test_name.text.vh             \
+  +data_file=$TEST_DIR/$test_name.data.vh             \
+  $TB_DIR/uvm_sw_ipc/sv/uvm_sw_ipc_pkg.sv             \
+  $TB_DIR/uvm_sw_ipc/sv/uvm_sw_ipc_if.sv              \
+  $TB_DIR/top/sv/top_pkg.sv                           \
+  $TB_DIR/top_test/sv/top_test_pkg.sv                 \
+  $TB_DIR/top_tb/sv/top_th.sv                         \
+  $TB_DIR/top_tb/sv/top_tb.sv                         \
+  +UVM_TESTNAME=$test_name

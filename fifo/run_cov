@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+
+set -e
+
+#--------------------------------------------------------------
+# functions
+#--------------------------------------------------------------
+error() {
+  >&2 echo "ERROR: $@"
+  exit 1
+}
+
+run_cov_ius() {
+  rm -rf generated_tb/sim/cov_work
+  ./run -ius -covfile ./covfile.txt +coverage_enable $@
+}
+
+run_cov_questa() {
+  ./run -questa -coverage -voptargs="+cover=bcesft+fifo" \
+    -coverstore cov_db -testname "top_test" +coverage_enable $@
+}
+
+#--------------------------------------------------------------
+# execution
+#--------------------------------------------------------------
+case "$1" in
+  "-ius")
+    shift
+    run_cov_ius $@
+    ;;
+  "-questa")
+    shift
+    run_cov_questa $@
+    ;;
+  *)
+    error "Unknown simulator: $1 ; use -ius or -questa"
+    ;;
+esac

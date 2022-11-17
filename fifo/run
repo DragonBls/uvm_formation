@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+set -e
+
+#--------------------------------------------------------------
+# functions
+#--------------------------------------------------------------
+error() {
+  >&2 echo "ERROR: $@"
+  exit 1
+}
+
+run_ius(){
+  cd generated_tb/sim
+  [ -f compile_ius.sh ] || error "generated_tb/sim/compile_ius.sh does not exist"
+  ./compile_ius.sh -access +rw +UVM_VERBOSITY=UVM_HIGH -q $@
+}
+
+run_questa(){
+  cd generated_tb/sim
+  [ -f run_questa ] || error "generated_tb/sim/run_questa does not exist"
+  ./run_questa +UVM_VERBOSITY=UVM_HIGH $@
+}
+
+#--------------------------------------------------------------
+# execution
+#--------------------------------------------------------------
+[ -d generated_tb/sim ] || error "generated_tb/sim does not exist"
+cp -f input/* generated_tb/sim || error "couldn't copy input/* in generated_tb/sim"
+[ -f "generated_tb/tb/top/sv/top_cov.sv" ] || touch generated_tb/tb/top/sv/top_cov.sv
+
+case "$1" in
+  "-ius")
+    shift
+    run_ius $@
+    ;;
+  "-questa")
+    shift
+    run_questa $@
+    ;;
+  *)
+    error "Unknown simulator: $1 ; use -ius or -questa"
+    ;;
+esac
