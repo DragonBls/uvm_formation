@@ -1,0 +1,37 @@
+//
+// File created by:  xrun
+// Do not modify this file
+//
+-RUNMODE
+-VTIMESCALE
+1ns/1ps
+-INCDIR
+../../../verif_utils
+-INCDIR
+../tb/fifo_in/sv
+-INCDIR
+../tb/fifo_out/sv
+-INCDIR
+../tb/top/sv
+-INCDIR
+../tb/top_test/sv
+-INCDIR
+../tb/top_tb/sv
+-I_INCDIR
+/tools/cadence/XCELIUM2203/tools/methodology/UVM/CDNS-1.2/sv/src
+-DEFINE
+USE_PARAMETERIZED_WRAPPER
+-I_INCDIR
+/tools/cadence/XCELIUM2203/tools/methodology/UVM/CDNS-1.2/additions/sv
+-UPDATE
+-CDSLIB
+./xcelium.d/run.lnx8664.22.03.d/cdsrun.lib
+-HDLVAR
+./xcelium.d/run.lnx8664.22.03.d/hdlrun.var
+-work
+worklib
+-UVMNOSINGLESTEP
+-define
+UVM_PLI
+/tools/cadence/XCELIUM2203/tools/methodology/UVM/CDNS-1.2/sv/src/uvm_pkg.sv
+/tools/cadence/XCELIUM2203/tools/methodology/UVM/CDNS-1.2/additions/sv/cdns_uvm_pkg.sv

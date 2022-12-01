@@ -1,0 +1,24 @@
+//
+// File created by:  xrun
+// Do not modify this file
+//
+-VTIMESCALE
+1ns/1ps
+-INCDIR
+../../../verif_utils
+-INCDIR
+../tb/fifo_in/sv
+-INCDIR
+../tb/fifo_out/sv
+-INCDIR
+../tb/top/sv
+-INCDIR
+../tb/top_test/sv
+-INCDIR
+../tb/top_tb/sv
+-I_INCDIR
+/tools/cadence/XCELIUM2203/tools/methodology/UVM/CDNS-1.2/sv/src
+-DEFINE
+USE_PARAMETERIZED_WRAPPER
+-I_INCDIR
+/tools/cadence/XCELIUM2203/tools/methodology/UVM/CDNS-1.2/additions/sv

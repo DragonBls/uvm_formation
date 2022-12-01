@@ -1,0 +1,11 @@
+!fifo_in
+clk clk
+data_in data_in
+data_in_vld data_in_vld
+data_in_rdy data_in_rdy
+
+!fifo_out
+clk clk
+data_out data_out
+data_out_rdy data_out_rdy
+data_out_vld data_out_vld

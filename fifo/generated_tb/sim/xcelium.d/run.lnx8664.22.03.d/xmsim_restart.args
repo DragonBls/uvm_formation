@@ -1,0 +1,40 @@
+//
+// File created by:  xrun
+// Do not modify this file
+//
+-INPUT
+"@source /tools/cadence/XCELIUM2203/tools/methodology/UVM/CDNS-1.2/additions/sv/files/tcl/uvm_sim.tcl"
++UVM_VERBOSITY=UVM_HIGH
++coverage_enable
++incdir+../../../verif_utils
++incdir+../tb/fifo_in/sv
++incdir+../tb/fifo_out/sv
++incdir+../tb/top/sv
++incdir+../tb/top_test/sv
++incdir+../tb/top_tb/sv
+-uvmhome
+/tools/cadence/XCELIUM2203/tools/methodology/UVM/CDNS-1.2
+-sv_lib
+/tools/cadence/XCELIUM2203/tools/methodology/UVM/CDNS-1.2/additions/sv/lib/64bit/libuvmpli.so
++UVM_TESTNAME=top_test
+-RUN
+-SV_LIB
+/tools/cadence/XCELIUM2203/tools/methodology/UVM/CDNS-1.2/additions/sv/lib/64bit/libuvmdpi.so
++EMGRLOG
+xrun.log
+-XLSTIME
+1669890224
+-XLKEEP
+-XLMODE
+./xcelium.d/run.lnx8664.22.03.d
+-RUNMODE
+-CDSLIB
+./xcelium.d/run.lnx8664.22.03.d/cds.lib
+-HDLVAR
+./xcelium.d/run.lnx8664.22.03.d/hdl.var
+-XLNAME
+xrun
+-XLVERSION
+"TOOL:	xrun(64)	22.03-s003"
+-XLNAME
+./xcelium.d/run.lnx8664.22.03.d/pc-formation5_11693

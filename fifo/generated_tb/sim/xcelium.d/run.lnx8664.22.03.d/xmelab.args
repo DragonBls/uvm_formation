@@ -1,0 +1,29 @@
+//
+// File created by:  xrun
+// Do not modify this file
+//
++UVM_VERBOSITY=UVM_HIGH
++coverage_enable
++incdir+../../../verif_utils
++incdir+../tb/fifo_in/sv
++incdir+../tb/fifo_out/sv
++incdir+../tb/top/sv
++incdir+../tb/top_test/sv
++incdir+../tb/top_tb/sv
+-loadpli
+/tools/cadence/XCELIUM2203/tools/methodology/UVM/CDNS-1.2/additions/sv/lib/64bit/libuvmpli.so:uvm_pli_boot
++UVM_TESTNAME=top_test
+-ACCESS
++rw
+-COVFILE
+./covfile.txt
+-XLMODE
+./xcelium.d/run.lnx8664.22.03.d
+-RUNMODE
+-CDSLIB
+./xcelium.d/run.lnx8664.22.03.d/cds.lib
+-HDLVAR
+./xcelium.d/run.lnx8664.22.03.d/hdl.var
+-WORK
+worklib
+-HASXLMODE

@@ -1,0 +1,6 @@
+# code coverage: match fifo and all its decendent
+select_coverage -block -expr -fsm -toggle -module fifo...
+
+# functional coverage
+select_functional
+set_covergroup -new_instance_reporting # improve the scoping and naming of covergroup
